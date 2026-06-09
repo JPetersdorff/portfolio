@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 120px 0 80px;
-  border-bottom: 1px solid var(--gold-dim);
+  border-bottom: 1px solid var(--border);
 }
 
 .inner {
@@ -14,11 +14,11 @@
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 300;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--accent);
   margin-bottom: 20px;
 }
 
@@ -26,49 +26,46 @@
   font-family: var(--font-display);
   font-size: clamp(72px, 12vw, 160px);
   line-height: 0.9;
-  color: var(--paper);
+  color: var(--text-hi);
   letter-spacing: 2px;
-  margin-bottom: 0;
 }
 
 .von {
   font-family: var(--font-body);
-  font-style: italic;
-  font-size: clamp(18px, 2.5vw, 28px);
+  font-size: clamp(16px, 2vw, 22px);
   font-weight: 300;
-  color: var(--muted);
+  color: var(--muted-text);
   display: block;
-  margin-left: 6px;
-  margin-top: 8px;
-  letter-spacing: 3px;
+  margin-left: 4px;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
 }
 
 .tagline {
   font-family: var(--font-body);
-  font-style: italic;
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(16px, 1.8vw, 20px);
   font-weight: 300;
-  color: var(--cream);
+  color: var(--text);
   margin-top: 32px;
-  line-height: 1.5;
+  line-height: 1.6;
   max-width: 420px;
 }
 
 .actions {
   display: flex;
-  gap: 16px;
-  margin-top: 48px;
+  gap: 12px;
+  margin-top: 44px;
   flex-wrap: wrap;
 }
 
 .btnPrimary {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--bg);
-  background: var(--gold);
-  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  padding: 12px 26px;
+  border-radius: var(--radius);
   text-decoration: none;
   transition: opacity 0.2s;
 }
@@ -79,13 +76,13 @@
 }
 
 .btnGhost {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--cream);
-  border: 1px solid var(--gold-dim);
-  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 12px 26px;
+  border-radius: var(--radius);
   text-decoration: none;
   transition:
     border-color 0.2s,
@@ -93,8 +90,8 @@
 }
 
 .btnGhost:hover {
-  border-color: var(--gold);
-  color: var(--gold);
+  border-color: var(--accent);
+  color: var(--accent);
   text-decoration: none;
 }
 
@@ -108,8 +105,8 @@
 .scrollHint span {
   display: block;
   width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
+  height: 52px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
   margin: 0 auto;
   animation: scrollPulse 2s ease-in-out infinite;
 }
@@ -118,11 +115,9 @@
   0%,
   100% {
     opacity: 0.3;
-    transform: scaleY(1);
   }
   50% {
-    opacity: 1;
-    transform: scaleY(1.1);
+    opacity: 0.8;
   }
 }
 

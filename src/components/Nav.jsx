@@ -9,7 +9,7 @@ const links = [
   { label: 'Kontakt', href: '#contact' },
 ]
 
-export default function Nav() {
+export default function Nav({ theme, onToggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -35,6 +35,10 @@ export default function Nav() {
             </li>
           ))}
         </ul>
+
+        <button className={styles.themeToggle} onClick={onToggleTheme} aria-label="Theme wechseln">
+          {theme === 'dark' ? '☀' : '☾'}
+        </button>
 
         <button className={styles.burger} onClick={() => setMenuOpen((o) => !o)} aria-label="Menü">
           <span />
