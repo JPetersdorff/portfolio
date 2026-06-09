@@ -58,20 +58,23 @@
 
 .themeToggle {
   background: none;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border: none;
   color: var(--muted-text);
   cursor: pointer;
-  padding: 5px 10px;
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
   transition:
-    border-color 0.2s,
-    color 0.2s;
+    color 0.2s,
+    border-color 0.2s;
 }
 
 .themeToggle:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  color: var(--text-hi);
+  border-bottom-color: var(--accent);
 }
 
 .burger {

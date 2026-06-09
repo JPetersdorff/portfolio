@@ -37,7 +37,7 @@ export default function Nav({ theme, onToggleTheme }) {
         </ul>
 
         <button className={styles.themeToggle} onClick={onToggleTheme} aria-label="Theme wechseln">
-          {theme === 'dark' ? '☀' : '☾'}
+          {theme === 'dark' ? 'Light' : 'Dark'}
         </button>
 
         <button className={styles.burger} onClick={() => setMenuOpen((o) => !o)} aria-label="Menü">
