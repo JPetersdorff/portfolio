@@ -1,0 +1,22 @@
+#!/bin/sh
+# Enforces Conventional Commits format
+# Valid: feat: ..., fix: ..., chore: ..., docs: ..., style: ..., refactor: ..., test: ..., ci: ...
+
+MSG=$(cat "$1")
+
+PATTERN='^(feat|fix|chore|docs|style|refactor|test|ci|perf|build|revert)(\(.+\))?: .{1,}'
+
+if ! echo "$MSG" | grep -qE "$PATTERN"; then
+  echo ""
+  echo "  commit-msg: invalid commit message format."
+  echo ""
+  echo "  Expected:  <type>(<scope>): <description>"
+  echo "  Example:   feat: add photography gallery"
+  echo "             fix(nav): correct mobile link"
+  echo ""
+  echo "  Types: feat, fix, chore, docs, style, refactor, test, ci, perf, build, revert"
+  echo ""
+  exit 1
+fi
+
+exit 0
