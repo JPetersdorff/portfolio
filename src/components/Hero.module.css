@@ -34,7 +34,7 @@
   font-family: var(--font-body);
   font-size: clamp(16px, 2vw, 22px);
   font-weight: 300;
-  color: var(--muted-text);
+  color: var(--muted);
   display: block;
   margin-left: 4px;
   margin-top: 10px;
