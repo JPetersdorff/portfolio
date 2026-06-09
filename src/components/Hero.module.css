@@ -1,0 +1,132 @@
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 0 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 12vw, 160px);
+  line-height: 0.9;
+  color: var(--text-hi);
+  letter-spacing: 2px;
+}
+
+.von {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 300;
+  color: var(--muted-text);
+  display: block;
+  margin-left: 4px;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 300;
+  color: var(--text);
+  margin-top: 32px;
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 44px;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  padding: 12px 26px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.btnPrimary:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.btnGhost {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 12px 26px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.btnGhost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scrollHint span {
+  display: block;
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  margin: 0 auto;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 0 60px;
+  }
+
+  .scrollHint {
+    display: none;
+  }
+}
