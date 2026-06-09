@@ -1,0 +1,137 @@
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 0 80px;
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 12vw, 160px);
+  line-height: 0.9;
+  color: var(--paper);
+  letter-spacing: 2px;
+  margin-bottom: 0;
+}
+
+.von {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(18px, 2.5vw, 28px);
+  font-weight: 300;
+  color: var(--muted);
+  display: block;
+  margin-left: 6px;
+  margin-top: 8px;
+  letter-spacing: 3px;
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 300;
+  color: var(--cream);
+  margin-top: 32px;
+  line-height: 1.5;
+  max-width: 420px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.btnPrimary:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.btnGhost {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream);
+  border: 1px solid var(--gold-dim);
+  padding: 14px 28px;
+  text-decoration: none;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.btnGhost:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scrollHint span {
+  display: block;
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin: 0 auto;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 0 60px;
+  }
+
+  .scrollHint {
+    display: none;
+  }
+}
