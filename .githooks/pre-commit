@@ -1,26 +1,4 @@
 #!/bin/sh
-# Runs on every commit — fast checks only
+# Runs prettier + eslint on staged files via lint-staged
 
-STAGED=$(git diff --cached --name-only --diff-filter=ACM)
-
-if [ -z "$STAGED" ]; then
-  exit 0
-fi
-
-JS_FILES=$(echo "$STAGED" | grep -E '\.(js|jsx|ts|tsx)$' || true)
-
-if [ -n "$JS_FILES" ]; then
-  # Block leftover console.log / debugger statements
-  MATCHES=$(git diff --cached -- $JS_FILES | grep '^\+' | grep -E 'console\.(log|debug|warn|error)|debugger' || true)
-  if [ -n "$MATCHES" ]; then
-    echo ""
-    echo "  pre-commit: console.log / debugger found in staged changes:"
-    echo "$MATCHES" | sed 's/^/    /'
-    echo ""
-    echo "  Remove them or use git commit --no-verify to skip (not recommended)."
-    echo ""
-    exit 1
-  fi
-fi
-
-exit 0
+npx lint-staged
