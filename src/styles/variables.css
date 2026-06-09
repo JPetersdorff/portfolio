@@ -1,21 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
 :root {
-  --bg: #0d0d0d;
-  --bg-raised: #141414;
-  --bg-card: #1a1a1a;
-  --paper: #f0ebe0;
-  --cream: #e8e1cf;
-  --cream-muted: #b8b0a0;
-  --gold: #c9a84c;
-  --gold-dim: rgba(201, 168, 76, 0.25);
-  --red: #d44a2a;
-  --muted: #7a7468;
+  /* dark mode (default) */
+  --bg: #070e1b;
+  --bg-raised: #0c1526;
+  --bg-card: #101d34;
+  --text: #c8d4e8;
+  --text-hi: #e8edf8;
+  --muted: #4a5a72;
+  --muted-text: #8090a8;
+  --accent: #5b82b8;
+  --accent-dim: rgba(91, 130, 184, 0.14);
+  --border: rgba(91, 130, 184, 0.14);
+  --border-sub: rgba(255, 255, 255, 0.05);
 
   --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Crimson Pro', serif;
+  --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  --radius-sm: 4px;
+  --radius: 6px;
 
   --max-w: 1100px;
   --section-gap: 120px;
+}
+
+[data-theme='light'] {
+  --bg: #f0f4fa;
+  --bg-raised: #e8eef8;
+  --bg-card: #ffffff;
+  --text: #3a4a62;
+  --text-hi: #0f1829;
+  --muted: #8090a8;
+  --muted-text: #6070a0;
+  --accent: #3a6090;
+  --accent-dim: rgba(58, 96, 144, 0.1);
+  --border: rgba(58, 96, 144, 0.14);
+  --border-sub: rgba(0, 0, 0, 0.06);
 }
