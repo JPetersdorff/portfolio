@@ -33,6 +33,7 @@
   border-radius: 50%;
   background: var(--accent);
   border: 2px solid var(--bg);
+  box-shadow: 0 0 14px var(--accent);
 }
 
 .header {

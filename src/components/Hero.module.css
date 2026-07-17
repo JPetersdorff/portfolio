@@ -5,6 +5,21 @@
   justify-content: center;
   padding: 120px 0 80px;
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* halo behind the name */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 8%;
+  width: 720px;
+  height: 720px;
+  max-width: 90vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-1), transparent 65%);
+  pointer-events: none;
 }
 
 .inner {

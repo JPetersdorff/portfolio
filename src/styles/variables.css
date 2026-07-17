@@ -13,6 +13,9 @@
   --accent-dim: rgba(91, 130, 184, 0.14);
   --border: rgba(91, 130, 184, 0.14);
   --border-sub: rgba(255, 255, 255, 0.05);
+  --glow-1: rgba(91, 130, 184, 0.1);
+  --glow-2: rgba(58, 96, 144, 0.07);
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 32px rgba(0, 0, 0, 0.25);
 
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -37,4 +40,7 @@
   --accent-dim: rgba(58, 96, 144, 0.1);
   --border: rgba(58, 96, 144, 0.14);
   --border-sub: rgba(0, 0, 0, 0.06);
+  --glow-1: rgba(58, 96, 144, 0.08);
+  --glow-2: rgba(91, 130, 184, 0.06);
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 8px 32px rgba(15, 24, 41, 0.08);
 }
