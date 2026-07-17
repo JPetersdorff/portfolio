@@ -30,22 +30,24 @@
 .logo {
   font-family: var(--font-mono);
   font-size: 12px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   color: var(--accent);
   text-decoration: none;
 }
 
 .links {
   display: flex;
-  gap: 32px;
+  gap: 36px;
   list-style: none;
   align-items: center;
 }
 
 .links a {
-  font-family: var(--font-body);
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: 10px;
   font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: var(--muted-text);
   text-decoration: none;
   transition: color 0.2s;
