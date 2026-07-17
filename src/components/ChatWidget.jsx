@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { getSessionToken } from '../utils/chatSession'
 import styles from './ChatWidget.module.css'
 
@@ -78,11 +79,17 @@ export default function ChatWidget() {
                 Frag mich etwas über meine Karriere, meine Skills oder Projekte.
               </p>
             )}
-            {messages.map((m, i) => (
-              <div key={i} className={m.role === 'user' ? styles.userMsg : styles.botMsg}>
-                {m.content}
-              </div>
-            ))}
+            {messages.map((m, i) =>
+              m.role === 'user' ? (
+                <div key={i} className={styles.userMsg}>
+                  {m.content}
+                </div>
+              ) : (
+                <div key={i} className={styles.botMsg}>
+                  <ReactMarkdown>{m.content}</ReactMarkdown>
+                </div>
+              )
+            )}
             {notice && <div className={styles.notice}>{notice}</div>}
             {pending && <div className={styles.botMsg}>…</div>}
           </div>
