@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
 :root {
-  /* dark mode (default) */
-  --bg: #070e1b;
-  --bg-raised: #0c1526;
-  --bg-card: #101d34;
-  --text: #c8d4e8;
-  --text-hi: #e8edf8;
-  --muted: #4a5a72;
-  --muted-text: #8090a8;
-  --accent: #5b82b8;
-  --accent-dim: rgba(91, 130, 184, 0.14);
-  --border: rgba(91, 130, 184, 0.14);
+  /* dark mode (default) — warm bronze/amber temperature */
+  --bg: #141009;
+  --bg-raised: #1c1610;
+  --bg-card: #241c13;
+  --text: #e0d3bd;
+  --text-hi: #f6efe1;
+  --muted: #6e5c44;
+  --muted-text: #a8946f;
+  --accent: #c9955c;
+  --accent-dim: rgba(201, 149, 92, 0.14);
+  --border: rgba(201, 149, 92, 0.16);
   --border-sub: rgba(255, 255, 255, 0.05);
 
   --font-display: 'Bebas Neue', sans-serif;
@@ -26,15 +26,15 @@
 }
 
 [data-theme='light'] {
-  --bg: #f0f4fa;
-  --bg-raised: #e8eef8;
+  --bg: #faf5ec;
+  --bg-raised: #f1e9db;
   --bg-card: #ffffff;
-  --text: #3a4a62;
-  --text-hi: #0f1829;
-  --muted: #8090a8;
-  --muted-text: #6070a0;
-  --accent: #3a6090;
-  --accent-dim: rgba(58, 96, 144, 0.1);
-  --border: rgba(58, 96, 144, 0.14);
+  --text: #5c4c38;
+  --text-hi: #2b2115;
+  --muted: #b5a488;
+  --muted-text: #8d7a5e;
+  --accent: #a06a34;
+  --accent-dim: rgba(160, 106, 52, 0.1);
+  --border: rgba(160, 106, 52, 0.16);
   --border-sub: rgba(0, 0, 0, 0.06);
 }
