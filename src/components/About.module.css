@@ -12,9 +12,18 @@
 }
 
 .text p {
-  font-size: 17px;
-  line-height: 1.75;
+  font-size: 18px;
+  line-height: 1.85;
   color: var(--text);
+  letter-spacing: -0.1px;
+}
+
+/* editorial lede: first paragraph carries more presence */
+.text p:first-child {
+  font-size: 22px;
+  line-height: 1.6;
+  font-weight: 300;
+  color: var(--text-hi);
 }
 
 .text strong {
@@ -43,10 +52,11 @@
 
 .statNum {
   font-family: var(--font-display);
-  font-size: 44px;
+  font-size: 56px;
   line-height: 1;
   color: var(--accent);
   letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
 }
 
 .statLabel {
