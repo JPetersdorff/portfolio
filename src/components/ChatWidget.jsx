@@ -107,7 +107,17 @@ export default function ChatWidget() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Chat schließen' : 'Chat öffnen'}
       >
-        {open ? '×' : '💬'}
+        {open ? (
+          '×'
+        ) : (
+          <>
+            <span className={styles.monogram}>
+              <span className={styles.j}>J</span>
+              <span className={styles.p}>P</span>
+            </span>
+            <span className={styles.statusDot} />
+          </>
+        )}
       </button>
     </div>
   )
