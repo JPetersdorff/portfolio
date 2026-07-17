@@ -22,6 +22,46 @@
   margin-bottom: 20px;
 }
 
+/* staggered entrance on first paint */
+.eyebrow,
+.name,
+.tagline,
+.actions {
+  animation: heroRise 0.7s ease both;
+}
+
+.name {
+  animation-delay: 0.08s;
+}
+
+.tagline {
+  animation-delay: 0.18s;
+}
+
+.actions {
+  animation-delay: 0.28s;
+}
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eyebrow,
+  .name,
+  .tagline,
+  .actions {
+    animation: none;
+  }
+}
+
 .name {
   font-family: var(--font-display);
   font-size: clamp(72px, 12vw, 160px);
@@ -67,11 +107,16 @@
   padding: 12px 26px;
   border-radius: var(--radius);
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition:
+    opacity 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .btnPrimary:hover {
-  opacity: 0.85;
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--accent-dim);
   text-decoration: none;
 }
 
@@ -86,12 +131,14 @@
   text-decoration: none;
   transition:
     border-color 0.2s,
-    color 0.2s;
+    color 0.2s,
+    transform 0.2s;
 }
 
 .btnGhost:hover {
   border-color: var(--accent);
   color: var(--accent);
+  transform: translateY(-2px);
   text-decoration: none;
 }
 

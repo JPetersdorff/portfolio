@@ -34,11 +34,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s;
+  transition:
+    background 0.3s,
+    transform 0.4s ease;
 }
 
 .item:hover .placeholder {
   background: var(--bg-raised);
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item:hover .placeholder {
+    transform: none;
+  }
 }
 
 .placeholderText {

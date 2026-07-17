@@ -44,6 +44,28 @@ section {
   position: relative;
 }
 
+/* scroll-reveal: sections fade/rise in once, driven by the observer in App.jsx */
+main section {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+main section.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .section-label {
   font-family: var(--font-mono);
   font-size: 10px;

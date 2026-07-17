@@ -49,10 +49,19 @@
   color: var(--muted-text);
   text-decoration: none;
   transition: color 0.2s;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition:
+    color 0.2s,
+    background-size 0.25s ease;
+  padding-bottom: 3px;
 }
 
 .links a:hover {
   color: var(--text-hi);
+  background-size: 100% 1px;
   text-decoration: none;
 }
 

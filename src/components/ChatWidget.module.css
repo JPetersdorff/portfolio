@@ -76,6 +76,25 @@
   border-radius: var(--radius);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
   overflow: hidden;
+  transform-origin: bottom right;
+  animation: panelIn 0.25s ease both;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
 }
 
 .header {

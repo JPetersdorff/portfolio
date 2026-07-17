@@ -38,7 +38,20 @@
   border-radius: var(--radius-sm);
   transition:
     border-color 0.2s,
-    color 0.2s;
+    color 0.2s,
+    transform 0.2s;
+}
+
+.tag:hover {
+  border-color: var(--accent);
+  color: var(--text-hi);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tag:hover {
+    transform: none;
+  }
 }
 
 .tag.hi {
