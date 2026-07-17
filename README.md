@@ -18,14 +18,17 @@ npm run dev
 ## Chatbot backend
 
 The floating chat widget (`src/components/ChatWidget.jsx`) talks to `/api/chat.js`, a
-Vercel serverless function that proxies requests to a self-hosted Ollama instance
-(Llama 3.1 8B) on a Hetzner Cloud VM — not a managed LLM API — so a prepaid cloud
-balance is the hard spending cap instead of per-token billing on a card.
+Vercel serverless function that proxies requests to the
+[Hetzner Experiments Inference API](https://experiments.hetzner.com) (currently free,
+rate-limited beta; model: `Qwen/Qwen3.6-35B-A3B-FP8`) — no VM to manage. If Hetzner ever
+starts billing this or shuts it down, the fallback is a pay-per-token provider with a
+confirmed prepaid hard-cap (e.g. DeepInfra) — swap the endpoint/model/env var in
+`api/chat.js`, the request shape is already OpenAI-compatible either way.
 
 Required env vars — see `.env.local.example`:
 
-- `OLLAMA_ENDPOINT_URL` / `OLLAMA_BEARER_TOKEN` — the self-hosted model endpoint, locked
-  down at the network level (firewall allowlist + bearer token).
+- `HETZNER_INFERENCE_API_KEY` — token from experiments.hetzner.com (Apps → Inference →
+  Create API Token).
 - `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` — Upstash Redis (Vercel
   Marketplace), used for per-session rate limiting (20 messages/day). Optional locally —
   without it, rate limiting is skipped rather than failing requests.

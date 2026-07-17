@@ -4,6 +4,8 @@ import { SYSTEM_PROMPT } from './systemPrompt.js'
 
 const MAX_TOKENS = 300
 const REQUEST_TIMEOUT_MS = 15000
+const HETZNER_INFERENCE_URL = 'https://inference.hetzner.com/api/v1/chat/completions'
+const HETZNER_MODEL = 'Qwen/Qwen3.6-35B-A3B-FP8'
 
 const hasRedisConfig = Boolean(
   process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
@@ -51,7 +53,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const reply = await askOllama(messages)
+    const reply = await askHetzner(messages)
     res.status(200).json({ reply })
   } catch (err) {
     console.error('chat upstream error', err)
@@ -59,22 +61,25 @@ export default async function handler(req, res) {
   }
 }
 
-async function askOllama(messages) {
+async function askHetzner(messages) {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
 
   try {
-    const response = await fetch(process.env.OLLAMA_ENDPOINT_URL, {
+    const response = await fetch(HETZNER_INFERENCE_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.OLLAMA_BEARER_TOKEN}`,
+        Authorization: `Bearer ${process.env.HETZNER_INFERENCE_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'llama3.1:8b-instruct-q4_K_M',
+        model: HETZNER_MODEL,
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages],
         max_tokens: MAX_TOKENS,
         temperature: 0.6,
+        // Qwen3.6 is a "thinking" model by default — without this it burns the token
+        // budget on internal reasoning and cuts off before the actual reply.
+        chat_template_kwargs: { enable_thinking: false },
       }),
       signal: controller.signal,
     })
