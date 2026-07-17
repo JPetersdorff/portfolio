@@ -17,16 +17,23 @@ body {
   color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   transition:
     background 0.3s,
     color 0.3s;
 }
 
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 a {
   color: var(--accent);
   text-decoration: none;
+  text-underline-offset: 3px;
 }
 
 a:hover {
@@ -48,10 +55,21 @@ section {
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 300;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 40px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* editorial rule trailing off the label */
+.section-label::after {
+  content: '';
+  height: 1px;
+  width: 64px;
+  background: linear-gradient(to right, var(--accent), transparent);
 }
 
 @media (max-width: 768px) {

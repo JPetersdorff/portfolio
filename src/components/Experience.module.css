@@ -45,13 +45,14 @@
 }
 
 .company {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--text-hi);
   font-family: var(--font-body);
   display: flex;
   align-items: center;
   gap: 8px;
+  letter-spacing: -0.2px;
 }
 
 .tag {
@@ -74,6 +75,7 @@
   letter-spacing: 1.5px;
   color: var(--muted-text);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .role {
