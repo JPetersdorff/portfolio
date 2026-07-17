@@ -15,6 +15,24 @@ npm install
 npm run dev
 ```
 
+## Chatbot backend
+
+The floating chat widget (`src/components/ChatWidget.jsx`) talks to `/api/chat.js`, a
+Vercel serverless function that proxies requests to a self-hosted Ollama instance
+(Llama 3.1 8B) on a Hetzner Cloud VM — not a managed LLM API — so a prepaid cloud
+balance is the hard spending cap instead of per-token billing on a card.
+
+Required env vars — see `.env.local.example`:
+
+- `OLLAMA_ENDPOINT_URL` / `OLLAMA_BEARER_TOKEN` — the self-hosted model endpoint, locked
+  down at the network level (firewall allowlist + bearer token).
+- `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` — Upstash Redis (Vercel
+  Marketplace), used for per-session rate limiting (20 messages/day). Optional locally —
+  without it, rate limiting is skipped rather than failing requests.
+
+This repo does not include the Hetzner VM provisioning — that's server administration,
+not application code.
+
 ## Branch Strategy
 
 | Branch | Purpose |
@@ -48,4 +66,6 @@ src/
 ├── pages/         # Page-level components
 ├── assets/        # Images, fonts
 └── styles/        # Global styles
+
+api/               # Vercel serverless functions (e.g. chat backend)
 ```
