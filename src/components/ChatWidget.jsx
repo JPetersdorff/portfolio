@@ -1,7 +1,20 @@
 import { useState, useRef, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { getSessionToken } from '../utils/chatSession'
 import styles from './ChatWidget.module.css'
+
+const markdownComponents = {
+  table: (props) => {
+    const tableProps = { ...props }
+    delete tableProps.node
+    return (
+      <div className={styles.tableWrap}>
+        <table {...tableProps} />
+      </div>
+    )
+  },
+}
 
 const UNAVAILABLE_MESSAGE =
   'Der Chatbot macht gerade eine Pause. Schau später nochmal vorbei oder schreib mir direkt eine Nachricht.'
@@ -86,7 +99,9 @@ export default function ChatWidget() {
                 </div>
               ) : (
                 <div key={i} className={styles.botMsg}>
-                  <ReactMarkdown>{m.content}</ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                    {m.content}
+                  </ReactMarkdown>
                 </div>
               )
             )}
