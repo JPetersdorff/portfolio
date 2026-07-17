@@ -2,7 +2,7 @@ import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
 import { SYSTEM_PROMPT } from './systemPrompt.js'
 
-const MAX_TOKENS = 300
+const MAX_TOKENS = 700
 const REQUEST_TIMEOUT_MS = 15000
 const HETZNER_INFERENCE_URL = 'https://inference.hetzner.com/api/v1/chat/completions'
 const HETZNER_MODEL = 'Qwen/Qwen3.6-35B-A3B-FP8'
