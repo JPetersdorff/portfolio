@@ -13,13 +13,53 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--accent);
+  border: 1.5px solid var(--accent);
+  background: var(--bg-card);
   color: var(--bg);
   font-size: 22px;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monogram {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  width: 18px;
+  height: 16px;
+}
+
+.monogram .j {
+  position: absolute;
+  left: 0;
+  color: var(--text-hi);
+}
+
+.monogram .p {
+  position: absolute;
+  left: 6px;
+  color: var(--accent);
+}
+
+.statusDot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #5fae7a;
+  border: 2px solid var(--bg-card);
+}
+
+[data-theme='light'] .statusDot {
+  background: #3f8f60;
 }
 
 .bubble:hover {
