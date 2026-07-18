@@ -76,7 +76,10 @@ async function askHetzner(messages) {
         model: HETZNER_MODEL,
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages],
         max_tokens: MAX_TOKENS,
-        temperature: 0.6,
+        // temperature 0.6 let the model drift into first-person ("I work at...")
+        // despite explicit third-person instructions in the system prompt; 0 makes
+        // it reliably follow the persona rule (verified across several prompts)
+        temperature: 0,
         // Qwen3.6 is a "thinking" model by default — without this it burns the token
         // budget on internal reasoning and cuts off before the actual reply.
         chat_template_kwargs: { enable_thinking: false },
