@@ -6,6 +6,7 @@ import Experience from './components/Experience'
 import TechStack from './components/TechStack'
 import Gallery from './components/Gallery'
 import Contact from './components/Contact'
+import ChatWidget from './components/ChatWidget'
 
 function App() {
   const [theme, setTheme] = useState('dark')
@@ -27,6 +28,7 @@ function App() {
         <Gallery />
         <Contact />
       </main>
+      <ChatWidget />
     </>
   )
 }
