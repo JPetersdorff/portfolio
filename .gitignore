@@ -36,3 +36,11 @@ coverage/
 *.tsbuildinfo
 .vercel
 source/
+
+# Chatbot content-eval output (regenerable; the red-team results/ dir is kept,
+# since docs/chatbot-red-team-report.md links to those run artifacts as evidence)
+scripts/test-chatbot-results.json
+scripts/test-chatbot-results.md
+
+# Red-team harness runtime logs (never commit)
+scripts/red-team/*.log
