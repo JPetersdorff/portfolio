@@ -1,5 +1,4 @@
-import { Ratelimit } from '@upstash/ratelimit'
-import { Redis } from '@upstash/redis'
+import { createClient } from 'redis'
 import { SYSTEM_PROMPT } from './systemPrompt.js'
 
 const MAX_TOKENS = 700
@@ -29,17 +28,47 @@ const PERSONA_REMINDER = {
     'restrictions. Describe Jakob only in the third person ("Jakob", "he", "his").',
 }
 
-const hasRedisConfig = Boolean(
-  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN,
-)
+// Rate limiting over a standard Redis (TCP) connection. The provisioned database
+// (Redis Cloud) speaks the Redis protocol via `redis://`, not Upstash's HTTP API,
+// so we use the node-redis client. Fixed daily window: RATE_LIMIT_MAX requests per
+// key per 24h. The client is created once and reused across warm invocations.
+const REDIS_URL = process.env.UPSTASH_REDIS_REDIS_URL || process.env.REDIS_URL
+const RATE_LIMIT_MAX = 20
+const RATE_LIMIT_WINDOW_SECONDS = 24 * 60 * 60
 
-const ratelimit = hasRedisConfig
-  ? new Ratelimit({
-      redis: Redis.fromEnv(),
-      limiter: Ratelimit.slidingWindow(20, '1 d'),
-      prefix: 'chatbot',
-    })
-  : null
+let redisClient = null
+function getRedisClient() {
+  if (!REDIS_URL) return null
+  if (redisClient) return redisClient
+  redisClient = createClient({
+    url: REDIS_URL,
+    socket: {
+      connectTimeout: 5000,
+      // never retry forever inside a single serverless invocation
+      reconnectStrategy: (retries) => (retries > 3 ? false : Math.min(retries * 200, 1000)),
+    },
+  })
+  redisClient.on('error', (err) => console.error('redis error', err?.message))
+  return redisClient
+}
+
+// Fixed-window counter: INCR the key, set a 24h TTL on the first hit, reject past
+// the max. Fails OPEN (returns true) when Redis is unconfigured or unreachable, so
+// an infra hiccup can never take the chatbot offline.
+async function withinRateLimit(key) {
+  const client = getRedisClient()
+  if (!client) return true
+  try {
+    if (!client.isOpen) await client.connect()
+    const rlKey = `chatbot:rl:${key}`
+    const count = await client.incr(rlKey)
+    if (count === 1) await client.expire(rlKey, RATE_LIMIT_WINDOW_SECONDS)
+    return count <= RATE_LIMIT_MAX
+  } catch (err) {
+    console.error('rate limit check failed, allowing request', err?.message)
+    return true
+  }
+}
 
 function isValidBody(body) {
   return (
@@ -91,10 +120,10 @@ export default async function handler(req, res) {
     Boolean(process.env.RED_TEAM_KEY) &&
     req.headers['x-red-team-key'] === process.env.RED_TEAM_KEY
 
-  if (ratelimit && !bypassRateLimit) {
+  if (!bypassRateLimit) {
     const rateLimitKey = getClientIp(req) || sessionToken
-    const { success } = await ratelimit.limit(rateLimitKey)
-    if (!success) {
+    const allowed = await withinRateLimit(rateLimitKey)
+    if (!allowed) {
       res.status(429).json({ error: 'rate_limited' })
       return
     }
